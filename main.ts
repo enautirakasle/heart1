@@ -1,27 +1,27 @@
 input.onButtonPressed(Button.A, function () {
-    sprite.move(-1)
+    sprite.change(LedSpriteProperty.X, -1)
 })
 input.onButtonPressed(Button.B, function () {
-    sprite.move(1)
+    sprite.change(LedSpriteProperty.X, 1)
 })
 let sprite: game.LedSprite = null
-let velocidad = 1000000
+let velocidad = 1000
 game.setScore(0)
 sprite = game.createSprite(2, 4)
 let tanta = game.createSprite(randint(0, 4), 0)
 basic.forever(function () {
     for (let index = 0; index < 4; index++) {
-        control.waitMicros(velocidad)
+        basic.pause(velocidad)
         tanta.change(LedSpriteProperty.Y, 1)
     }
     if (sprite.isTouching(tanta)) {
         game.addScore(1)
-        velocidad += -95000
+        velocidad += -90
     }
     if (10 == game.score()) {
         game.gameOver()
     }
-    control.waitMicros(1000000)
+    basic.pause(velocidad)
     tanta.delete()
     tanta = game.createSprite(randint(0, 4), 0)
 })
