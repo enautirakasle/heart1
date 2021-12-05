@@ -6,6 +6,7 @@ input.onButtonPressed(Button.B, function () {
 })
 let sprite: game.LedSprite = null
 let velocidad = 1000
+game.setLife(5)
 game.setScore(0)
 sprite = game.createSprite(2, 4)
 let tanta = game.createSprite(randint(0, 4), 0)
@@ -17,6 +18,8 @@ basic.forever(function () {
     if (sprite.isTouching(tanta)) {
         game.addScore(1)
         velocidad += -90
+    } else {
+        game.removeLife(1)
     }
     if (10 == game.score()) {
         game.gameOver()
